@@ -1,7 +1,18 @@
+mod settings;
+
+#[cfg(debug_assertions)]
+mod dev;
+
+pub mod internal_prelude {
+    pub use bevy::prelude::*;
+    pub use extfn::extfn;
+}
+
 pub mod prelude {
     pub use bevy::prelude::*;
 
-    mod some_mod {
-        const SOME_CONST: i32 = 10;
-    }
+    pub use crate::settings::*;
+
+    #[cfg(debug_assertions)]
+    pub use crate::dev::*;
 }

@@ -4,7 +4,35 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-bevy = "0.19.1"
+bevy = {
+  version = "0.19.1",
+  default-features = false,
+  features = ["3d", "audio", "ui"],
+}
+log = {
+  version = "*",
+  features = ["max_level_info", "release_max_level_warn"],
+}
+
+automod = { version = "1.0.17" }
+extfn = { version = "0.1.3" }
+
+[features]
+dev = []
+
+[lints.clippy]
+all = "warn"
+pedantic = "warn"
+restriction = "warn"
+
+# float_cmp = "allow"
+# large_enum_variant = "allow"
+# needless_pass_by_value = "allow"
+# new_without_default = "allow"
+# suboptimal_flops = "allow"
+# type_complexity = "allow"
+
+allow_attributes = "deny"
 
 [profile.dev]
 opt-level = 1
