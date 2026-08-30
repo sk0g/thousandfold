@@ -3,6 +3,8 @@ clippy-dir := target-dir + "/clippy"
 clippy-build := clippy-dir + "/build"
 clippy-target := clippy-dir + "/target"
 
+dev-args := "-F bevy/dynamic_linking -F bevy/bevy_dev_tools"
+
 default:
     @just --choose
 
@@ -11,15 +13,15 @@ check:
     CARGO_TARGET_DIR={{ clippy-dir }} \
     CARGO_BUILD_BUILD_DIR={{ clippy-build }} \
     CARGO_BUILD_TARGET_DIR={{ clippy-target }} \
-    cargo clippy -F bevy/dynamic_linking --message-format=json-diagnostic-rendered-ansi
+    cargo clippy {{ dev-args }} --message-format=json-diagnostic-rendered-ansi
 
-dev:
-    cargo build -F bevy/dynamic_linking
+build:
+    cargo build {{ dev-args }}
 
 run:
-    cargo run -F bevy/dynamic_linking
+    cargo run {{ dev-args }}
 
-release:
+build-release:
     cargo build --release
 
 run-release:
@@ -28,4 +30,4 @@ run-release:
 clean:
     cargo clean
 
-dev-clean: clean dev
+build-clean: clean build

@@ -7,7 +7,7 @@ edition = "2024"
 bevy = {
   version = "0.19.1",
   default-features = false,
-  features = ["3d", "audio", "ui"],
+  features = ["3d", "audio", "dev", "ui"],
 }
 log = {
   version = "*",
