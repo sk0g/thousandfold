@@ -1,12 +1,18 @@
 use std::time::Duration;
 
-use bevy::dev_tools::{
-    fps_overlay::{
-        FpsOverlayConfig,
-        FpsOverlayPlugin,
-        FrameTimeGraphConfig,
+use bevy::{
+    dev_tools::{
+        fps_overlay::{
+            FpsOverlayConfig,
+            FpsOverlayPlugin,
+            FrameTimeGraphConfig,
+        },
+        infinite_grid::InfiniteGridPlugin,
     },
-    infinite_grid::InfiniteGridPlugin,
+    remote::{
+        RemotePlugin,
+        http::RemoteHttpPlugin,
+    },
 };
 
 use crate::internal_prelude::*;
@@ -17,6 +23,8 @@ pub fn configure_dev_plugins(self: &mut App) -> &mut App {
 
     self.add_plugins(InfiniteGridPlugin)
         .add_plugins(get_fps_overlay_plugin())
+        .add_plugins(RemotePlugin::default())
+        .add_plugins(RemoteHttpPlugin::default().with_port(15799))
 }
 
 fn get_fps_overlay_plugin() -> FpsOverlayPlugin {

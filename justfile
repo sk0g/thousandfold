@@ -13,7 +13,7 @@ check:
     CARGO_TARGET_DIR={{ clippy-dir }} \
     CARGO_BUILD_BUILD_DIR={{ clippy-build }} \
     CARGO_BUILD_TARGET_DIR={{ clippy-target }} \
-    cargo clippy {{ dev-args }} --message-format=json-diagnostic-rendered-ansi
+    cargo clippy --all-features --message-format=json-diagnostic-rendered-ansi
 
 build:
     cargo build {{ dev-args }}

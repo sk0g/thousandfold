@@ -10,6 +10,7 @@ bevy = {
   features = [
     "3d",
     "audio",
+    "bevy_remote",
     "dev",
     "ui",
   ],

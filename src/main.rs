@@ -22,10 +22,12 @@ fn main() {
             }),
     );
 
+    app.add_systems(Startup, spawn_player_and_camera);
+
     #[cfg(debug_assertions)]
     {
         app.configure_dev_plugins();
     }
 
-    app.add_systems(Startup, spawn_player_and_camera).run();
+    app.run();
 }
