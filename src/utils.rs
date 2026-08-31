@@ -11,6 +11,10 @@ use bevy::log::{
 
 use crate::internal_prelude::*;
 
+#[expect(
+    clippy::unnecessary_wraps,
+    reason = "No way around this, fmt layer is reuqired to be Option<Box<...>"
+)]
 pub fn custom_fmt_layer(_app: &mut App) -> Option<BoxedFmtLayer> {
     let layer = tracing_subscriber::fmt::Layer::default()
         .with_timer(CustomUptime::new())

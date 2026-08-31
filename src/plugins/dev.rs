@@ -7,7 +7,11 @@ use bevy::{
             FpsOverlayPlugin,
             FrameTimeGraphConfig,
         },
-        infinite_grid::InfiniteGridPlugin,
+        infinite_grid::{
+            InfiniteGrid,
+            InfiniteGridPlugin,
+            InfiniteGridSettings,
+        },
     },
     remote::{
         RemotePlugin,
@@ -22,6 +26,7 @@ pub fn configure_dev_plugins(self: &mut App) -> &mut App {
     info!("Setting up dev mode");
 
     self.add_plugins(InfiniteGridPlugin)
+        .add_systems(Startup, setup_infinite_grid_plugin)
         .add_plugins(get_fps_overlay_plugin())
         .add_plugins(RemotePlugin::default())
         .add_plugins(RemoteHttpPlugin::default().with_port(15799))
@@ -45,4 +50,8 @@ fn get_fps_overlay_plugin() -> FpsOverlayPlugin {
             },
         },
     }
+}
+
+fn setup_infinite_grid_plugin(mut commands: Commands) {
+    commands.spawn((InfiniteGrid, InfiniteGridSettings::default()));
 }
