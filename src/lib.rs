@@ -1,4 +1,5 @@
 mod common;
+mod player;
 mod plugins;
 mod settings;
 mod utils;
@@ -14,6 +15,7 @@ pub mod prelude {
     pub use bevy::prelude::*;
 
     pub use crate::{
+        player::*,
         plugins::*,
         settings::*,
         utils::*,

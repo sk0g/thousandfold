@@ -27,5 +27,5 @@ fn main() {
         app.configure_dev_plugins();
     }
 
-    app.run();
+    app.add_systems(Startup, spawn_player_and_camera).run();
 }

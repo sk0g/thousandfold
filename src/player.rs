@@ -1,7 +1,7 @@
 use crate::internal_prelude::*;
 
-fn setup_camera(mut commands: Commands) {
-    commands.spawn(())
+pub fn spawn_player_and_camera(mut commands: Commands) {
+    commands.spawn(("Player".as_name(), Player, MainCamera, Camera3d::default()));
 }
 
 #[derive(Component)]

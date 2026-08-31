@@ -1,5 +1,11 @@
+use std::time::Duration;
+
 use bevy::dev_tools::{
-    fps_overlay::FpsOverlayPlugin,
+    fps_overlay::{
+        FpsOverlayConfig,
+        FpsOverlayPlugin,
+        FrameTimeGraphConfig,
+    },
     infinite_grid::InfiniteGridPlugin,
 };
 
@@ -10,5 +16,25 @@ pub fn configure_dev_plugins(self: &mut App) -> &mut App {
     info!("Setting up dev mode");
 
     self.add_plugins(InfiniteGridPlugin)
-        .add_plugins(FpsOverlayPlugin::default())
+        .add_plugins(get_fps_overlay_plugin())
+}
+
+fn get_fps_overlay_plugin() -> FpsOverlayPlugin {
+    FpsOverlayPlugin {
+        config: FpsOverlayConfig {
+            text_config: TextFont {
+                font_size: FontSize::Px(18.0),
+                weight: FontWeight::LIGHT,
+                font_smoothing: FontSmoothing::AntiAliased,
+                ..default()
+            },
+            refresh_interval: Duration::from_millis(50),
+            text_color: Color::srgb(0.3, 0.9, 0.3),
+            enabled: true,
+            frame_time_graph_config: FrameTimeGraphConfig {
+                enabled: false,
+                ..default()
+            },
+        },
+    }
 }
