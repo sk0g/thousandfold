@@ -6,6 +6,7 @@ type-complexity-threshold = 400
 
 standard-macro-braces = [
   { name = "children", brace = "[" },  # TODO: others could use this too
+  { name = "actions", brace = "(" },
 ]
 
 disallowed-types = [

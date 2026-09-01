@@ -20,7 +20,7 @@ pub fn setup_lighting(mut commands: Commands) {
         Visibility::Visible,
         Transform::from_xyz(0.0, 4.0, 0.0).looking_at(Vec3::ZERO, Vec3::Y),
         DirectionalLight {
-            illuminance: lux::OVERCAST_DAY,
+            illuminance: lux::DIRECT_SUNLIGHT,
             shadow_maps_enabled: true,
             ..default()
         },

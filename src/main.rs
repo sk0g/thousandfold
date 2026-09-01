@@ -22,7 +22,8 @@ fn main() {
             }),
     );
 
-    app.add_systems(Startup, spawn_player_and_camera);
+    app.add_systems(Startup, spawn_player_and_camera)
+        .configure_input();
 
     #[cfg(debug_assertions)]
     {
