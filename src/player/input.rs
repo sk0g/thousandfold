@@ -2,7 +2,7 @@ use bevy_enhanced_input::prelude::*;
 
 use crate::internal_prelude::*;
 
-const MOVEMENT_SCALE: f32 = 10.0;
+const MOVEMENT_SCALE: f32 = 20.0;
 const MOVEMENT_SCALE_MIN_HEIGHT: f32 = 0.8;
 const MOVEMENT_SCALE_MAX_HEIGHT: f32 = 4.0;
 const ZOOM_SCALE: f32 = 5.0;
