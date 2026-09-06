@@ -23,11 +23,11 @@ fn main() {
     );
 
     app.add_systems(Startup, spawn_player_and_camera)
-        .configure_input();
+        .add_plugins(input_plugin);
 
     #[cfg(debug_assertions)]
     {
-        app.configure_dev_plugins();
+        app.add_plugins(dev_plugin);
     }
 
     app.run();

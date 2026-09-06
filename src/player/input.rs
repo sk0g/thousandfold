@@ -12,13 +12,12 @@ const MAX_HEIGHT: f32 = 300.0;
 const HEIGHT_DECREASE_SCALING_STARTS_AT: f32 = 100.0;
 const HEIGHT_INCREASE_SCALING_STARTS_AT: f32 = 250.0;
 
-#[extfn]
-pub fn configure_input(self: &mut App) -> &mut App {
-    self.add_plugins(EnhancedInputPlugin)
+pub fn input_plugin(app: &mut App) {
+    app.add_plugins(EnhancedInputPlugin)
         .add_input_context::<GameplayContext>()
         .add_systems(Startup, setup_gameplay_input_context)
         .add_observer(on_camera_move)
-        .add_observer(on_camera_zoom)
+        .add_observer(on_camera_zoom);
 }
 
 fn setup_gameplay_input_context(mut commands: Commands) {

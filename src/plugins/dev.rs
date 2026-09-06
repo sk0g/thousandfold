@@ -22,16 +22,15 @@ use bevy::{
 
 use crate::internal_prelude::*;
 
-#[extfn]
-pub fn configure_dev_plugins(self: &mut App) -> &mut App {
+pub fn dev_plugin(app: &mut App) {
     info!("Setting up dev mode");
 
-    self.add_plugins(RemotePlugin::default())
+    app.add_plugins(RemotePlugin::default())
         .add_plugins(RemoteHttpPlugin::default().with_port(15799))
         .add_plugins(InfiniteGridPlugin)
         .add_systems(Startup, setup_infinite_grid_plugin)
         .add_systems(PostStartup, spawn_debug_buildings)
-        .add_plugins(get_fps_overlay_plugin())
+        .add_plugins(get_fps_overlay_plugin());
 }
 
 fn get_fps_overlay_plugin() -> FpsOverlayPlugin {
