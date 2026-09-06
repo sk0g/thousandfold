@@ -1,6 +1,7 @@
 use std::time::Duration;
 
 use bevy::{
+    color::palettes::tailwind,
     dev_tools::{
         fps_overlay::{
             FpsOverlayConfig,
@@ -63,12 +64,25 @@ fn spawn_debug_buildings(
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     info!("Spawning debug buildings");
+    let colours = [
+        tailwind::EMERALD_950,
+        tailwind::AMBER_950,
+        tailwind::GRAY_900,
+        tailwind::GRAY_700,
+        tailwind::NEUTRAL_600,
+    ];
+    let material_handles = colours.map(|c| materials.add(Color::from(c)));
+
     for _ in 1..=20 {
         let scale = vec3(rng_f32(5.0, 10.0), rng_f32(5.0, 10.0), rng_f32(5.0, 10.0));
         commands.spawn((
             "DebugBuilding".as_name(),
             Mesh3d(meshes.add(Cuboid::default())),
-            MeshMaterial3d(materials.add(Color::srgb(0.3, 0.3, 0.3))),
+            MeshMaterial3d(
+                fastrand::choice(&material_handles)
+                    .expect("Random choice between mats")
+                    .clone(),
+            ),
             Transform::from_xyz(
                 rng_f32(-100.0, 100.0),
                 -0.15 + scale.y,
