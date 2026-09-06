@@ -1,6 +1,7 @@
-/target
-
 .vscode
 .idea
 
+.cargo/
+
 assets/
+target/

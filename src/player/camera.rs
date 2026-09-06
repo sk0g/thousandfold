@@ -8,35 +8,39 @@ use bevy::{
 
 use crate::internal_prelude::*;
 
-pub fn setup_lighting(mut commands: Commands) {
-    commands.insert_resource(GlobalAmbientLight {
-        color: ORANGE_RED.into(),
-        brightness: 200.0,
-        ..default()
-    });
+const DEFAULT_CAMERA_FOV: f32 = 45f32.to_radians();
 
-    commands.spawn((
-        "DirectionalLight".as_name(),
-        Visibility::Visible,
-        Transform::from_xyz(0.0, 4.0, 0.0).looking_at(Vec3::ZERO, Vec3::Y),
-        DirectionalLight {
-            illuminance: lux::DIRECT_SUNLIGHT,
-            shadow_maps_enabled: true,
-            ..default()
-        },
-    ));
+pub fn camera_and_lighting() -> impl Scene {
+    bsn! {
+        #Camera3d
+        Camera3d
 
-    commands.spawn((
-        "PointLight".as_name(),
-        Transform::from_xyz(10.0, 10.0, 0.0).looking_at(Vec3::ZERO, Vec3::Y),
-        PointLight {
-            intensity: lux::DIRECT_SUNLIGHT,
-            color: LIGHT_YELLOW.into(),
-            contact_shadows_enabled: true,
-            shadow_maps_enabled: true,
-            ..default()
-        },
-    ));
+        Projection::custom(PerspectiveProjection {fov: DEFAULT_CAMERA_FOV, ..default()})
+
+        Children [
+            #AmbientLight,
+            GlobalAmbientLight {
+                color: ORANGE_RED,
+                brightness: lux::CLEAR_SUNRISE,
+            },
+
+            #DirectionalLight
+            Transform::from_xyz(0.0, 4.0, 0.0)
+            DirectionalLight {
+                illuminance: lux::DIRECT_SUNLIGHT,
+                shadow_maps_enabled: true,
+            },
+
+            #PointLight
+            Transform::from_xyz(10.0, 10.0, 0.0)
+            PointLight {
+                intensity: lux::DIRECT_SUNLIGHT,
+                color: LIGHT_YELLOW,
+                contact_shadows_enabled: true,
+                shadow_maps_enabled: true,
+            }
+        ]
+    }
 }
 
 #[derive(Component)]
