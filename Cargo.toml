@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+# Bevy
 bevy = {
   version = "0.19.1",
   default-features = false,
@@ -20,8 +21,13 @@ log = {
   features = ["max_level_debug", "release_max_level_warn"],
 }
 
+# Bevy plugins/related
 bevy_enhanced_input = { version = "0.26.0" }
 
+# General Rust crates
+fastrand = { version = "2.5.0" }
+
+# Dev/language
 automoduse = { version = "*" }
 extfn = { version = "0.1.3" }
 

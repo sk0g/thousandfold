@@ -1,8 +1,5 @@
 use bevy::{
-    color::palettes::css::{
-        LIGHT_YELLOW,
-        ORANGE_RED,
-    },
+    color::palettes::css::LIGHT_YELLOW,
     light::light_consts::lux,
 };
 
@@ -18,12 +15,6 @@ pub fn camera_and_lighting() -> impl Scene {
         Projection::custom(PerspectiveProjection {fov: DEFAULT_CAMERA_FOV, ..default()})
 
         Children [
-            #AmbientLight,
-            GlobalAmbientLight {
-                color: ORANGE_RED,
-                brightness: lux::CLEAR_SUNRISE,
-            },
-
             #DirectionalLight
             Transform::from_xyz(0.0, 4.0, 0.0)
             DirectionalLight {

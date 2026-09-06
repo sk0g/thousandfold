@@ -1,8 +1,8 @@
 mod common;
+mod misc;
 mod player;
 mod plugins;
 mod settings;
-mod utils;
 
 pub mod internal_prelude {
     pub use bevy::prelude::*;
@@ -15,9 +15,9 @@ pub mod prelude {
     pub use bevy::prelude::*;
 
     pub use crate::{
+        misc::*,
         player::*,
         plugins::*,
         settings::*,
-        utils::*,
     };
 }

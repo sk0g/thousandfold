@@ -5209,6 +5209,7 @@ dependencies = [
  "bevy",
  "bevy_enhanced_input",
  "extfn",
+ "fastrand",
  "log",
 ]
 

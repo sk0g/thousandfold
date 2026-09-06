@@ -1,7 +1,10 @@
-use crate::internal_prelude::*;
+use crate::{
+    internal_prelude::*,
+    player::camera_and_lighting,
+};
 
 pub fn spawn_player_and_camera(mut commands: Commands) {
-    commands
+    let player = commands
         .spawn((
             "Player".as_name(),
             Visibility::Visible,
@@ -9,5 +12,9 @@ pub fn spawn_player_and_camera(mut commands: Commands) {
             super::Player,
             super::MainCamera,
         ))
-        .apply_scene(super::camera_and_lighting());
+        .id();
+
+    commands
+        .spawn_scene(camera_and_lighting())
+        .set_parent_in_place(player);
 }
